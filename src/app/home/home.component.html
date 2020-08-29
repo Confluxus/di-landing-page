@@ -1,9 +1,27 @@
-﻿<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with Angular 8!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
+<!-- <p>home works!</p> -->
+
+
+
+<style>
+    .mainimg {
+        display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: auto; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+  </style>
+
+        <div class="mainimg">
+        
+        
+
+
+        <picture>
+            <source media='(min-width:0px)' srcset="./../assets/img/login-image1.png">
+            <img mat-card-image src="" alt="Photo of a Shiba Inu">
+          </picture>
+        </div>

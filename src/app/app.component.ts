@@ -1,24 +1,27 @@
-﻿import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
 
-import { AuthenticationService } from './_services';
-import { User } from './_models';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  title = 'Deep Itensions';
+  appId = 'theme1';
+  isAuthenticated: boolean;
 
-import './_content/app.less';
+  constructor(public authService: AuthService) {
+    this.authService.isAuthenticated.subscribe(
+      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
+    );
+  }
 
-@Component({ selector: 'app', templateUrl: 'app.component.html' })
-export class AppComponent {
-    currentUser: User;
+  async ngOnInit() {
+    this.isAuthenticated = await this.authService.checkAuthenticated();
+  }
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    }
-
-    logout() {
-        this.authenticationService.logout();
-        this.router.navigate(['/login']);
-    }
+  logout() {
+    this.authService.logout('/');
+  }
 }
